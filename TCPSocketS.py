@@ -7,13 +7,13 @@ PORT = 8081
 BUFFSIZE = 1024
 ADDR = (HOST,PORT)
 
-serSocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-serSocket.bind(ADDR)
-serSocket.listen(5)
+TCPSerSocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+TCPSerSocket.bind(ADDR)
+TCPSerSocket.listen(5)
 
 while True:
     print "waiting for connection..."
-    tcpCliSocket,addr = serSocket.accept()
+    tcpCliSocket,addr = TCPSerSocket.accept()
     print '...connected from:',addr
 
     while True:
@@ -24,4 +24,4 @@ while True:
         print [time.ctime()],":",data
 
 tcpCliSocket.close()
-serSocket.close()
+TCPSerSocket.close()

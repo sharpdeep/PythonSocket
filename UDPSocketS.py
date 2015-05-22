@@ -1,13 +1,19 @@
 #coding=utf-8
 
 import socket
-port = 8802
+import time
+HOST = 'localhost'
+BUFFSIZE = 1024
+PORT = 8802
+ADDR = (HOST,PORT)
 
-s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)  
-s.bind(('',port))
+UDPSerSocket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)  
+UDPSerSocket.bind(ADDR)
 print('waiting for connect...')
 while True:
-    data,addr = s.recvfrom(1024)
-    print('Received',data,'from',addr)
-
+    data,addr = UDPSerSocket.recvfrom(BUFFSIZE)
+    print 'Received',data,'from',addr,'in [%s]'%time.ctime()
+    UDPSerSocket.sendto('[%s]:%s'%(time.ctime(),data),addr)
+    
+UDPSerSocket.close()
     

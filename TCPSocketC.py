@@ -8,15 +8,15 @@ PORT = 8081
 BUFFSIZE = 1024
 ADDR = (HOST,PORT)
 
-cliSocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-cliSocket.connect(ADDR)
+TCPCliSocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+TCPCliSocket.connect(ADDR)
 
 while True:
     data = raw_input('>')
     if not data:
         break
-    cliSocket.send(data)
-    data = cliSocket.recv(BUFFSIZE)
+    TCPCliSocket.send(data)
+    data = TCPCliSocket.recv(BUFFSIZE)
     if not data:
         break
     print '%s'%data
